@@ -49,7 +49,7 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
-  def update
+
     def update
       if @customer.update(customer_params)
         flash.notice = "The customer record was updated successfully."
@@ -94,7 +94,6 @@ class CustomersController < ApplicationController
     def catch_not_found(e)
       Rails.logger.debug("We had a not found exception.")
       flash.alert = e.to_s
-      redirect_to customers_path
-    end
+    redirect_to customers_path
   end
 end
