@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  validates :first_name, presence: true
+ validates :first_name, presence: true
  validates :last_name, presence: true
  validates :phone,  presence: true
  validates :phone, numericality: { only_integer: true }
