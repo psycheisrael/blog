@@ -51,14 +51,29 @@ end
   end
   describe "put customer_path with valid data" do
     it "updates an entry and redirects to the show path for the customer" do
+      customer_attributes = FactoryBot.attributes_for(:customer)
+      customer_attributes.delete(:customer)
+      expect { post customers_path, {customer: customer_attributes}
+    }.to change(Customer, :count)
+      expect(response.status).to_not eq(200)
     end
   end
   describe "put customer_path with invalid data" do
     it "does not update the customer record or redirect" do
+      customer = FactoryBot.create(:customer)
+      put customer_path(id: customer.id), params: {customer: { phone: "123"}}
+       customer.reload
+       expect(customer.phone).to_not eq("123")
+        expect(response.status).to eq(200)
     end
   end
   describe "delete a customer record" do
     it "deletes a customer record" do
+      customer_attributes = FactoryBot.attributes_for(:customer)
+      customer_attributes.delete(:customer)
+      expect { post customers_path, {customer: customer_attributes}
+    }.to change(Customer, :count)
+      expect(response.status).to_not eq(200)
     end
   end
 end
